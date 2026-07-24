@@ -24,10 +24,10 @@ export async function POST(request: NextRequest) {
     await createSession(user);
 
     return Response.json({ success: true, user: { name: user.name, role: user.role } });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Login error:", error);
     return Response.json(
-      { error: "Terjadi kesalahan server" },
+      { error: `Terjadi kesalahan server: ${error?.message || error}` },
       { status: 500 }
     );
   }
