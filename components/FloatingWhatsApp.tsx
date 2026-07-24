@@ -1,11 +1,11 @@
 import { MessageCircle } from "lucide-react";
 import { generateGeneralWhatsAppLink } from "@/lib/whatsapp";
 
-export default function FloatingWhatsApp() {
+export default function FloatingWhatsApp({ whatsappNumber }: { whatsappNumber?: string }) {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       <a
-        href={generateGeneralWhatsAppLink()}
+        href={generateGeneralWhatsAppLink(whatsappNumber)}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat WhatsApp"

@@ -8,6 +8,7 @@ export interface Car {
   pricePerDay: number;
   image: string;
   features: string[];
+  status?: string;
 }
 
 export const cars: Car[] = [

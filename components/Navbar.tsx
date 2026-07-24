@@ -13,7 +13,7 @@ const navLinks = [
   { label: "Kontak", href: "#kontak" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ whatsappNumber }: { whatsappNumber?: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -42,7 +42,7 @@ export default function Navbar() {
 
         {/* CTA Desktop */}
         <a
-          href={generateGeneralWhatsAppLink()}
+          href={generateGeneralWhatsAppLink(whatsappNumber)}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden rounded-md bg-amber-500 px-5 py-2 text-sm font-semibold text-[#223A50] transition-colors hover:bg-amber-400 md:inline-block"
@@ -75,7 +75,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href={generateGeneralWhatsAppLink()}
+              href={generateGeneralWhatsAppLink(whatsappNumber)}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-2 rounded-md bg-amber-500 px-5 py-2 text-center text-sm font-semibold text-[#223A50] transition-colors hover:bg-amber-400"

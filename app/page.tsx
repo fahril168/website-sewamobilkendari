@@ -8,11 +8,14 @@ import Advantages from "@/components/Advantages";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import { getContactSettings } from "@/lib/settings";
 
-export default function Home() {
+export default async function Home() {
+  const contact = await getContactSettings();
+
   return (
     <>
-      <Navbar />
+      <Navbar whatsappNumber={contact.whatsapp_number} />
       <main className="flex-1">
         <Hero />
         <StatsBanner />
@@ -23,7 +26,7 @@ export default function Home() {
         <ContactSection />
       </main>
       <Footer />
-      <FloatingWhatsApp />
+      <FloatingWhatsApp whatsappNumber={contact.whatsapp_number} />
     </>
   );
 }

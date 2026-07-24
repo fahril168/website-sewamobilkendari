@@ -1,26 +1,61 @@
-import { cars } from "@/data/cars";
+import pool from "@/lib/db";
 import CarCard from "./CarCard";
+import type { Car } from "@/data/cars";
+import { ScrollFadeUp, StaggerContainer, StaggerItem } from "@/components/ScrollAnimation";
 
-export default function CarCatalog() {
+export default async function CarCatalog() {
+  const result = await pool.query(`
+    SELECT c.*, cat.name as category_name,
+      COALESCE(
+        json_agg(cf.feature_name) FILTER (WHERE cf.feature_name IS NOT NULL),
+        '[]'
+      ) as features
+    FROM cars c
+    LEFT JOIN categories cat ON c.category_id = cat.id
+    LEFT JOIN car_features cf ON c.id = cf.car_id
+    WHERE c.status != 'maintenance'::car_status
+    GROUP BY c.id, cat.name
+    ORDER BY c.is_featured DESC, c.created_at DESC
+  `);
+
+  // Map database fields to the Car interface used by CarCard
+  const cars: Car[] = result.rows.map((row) => ({
+    id: row.id,
+    name: row.name,
+    type: row.category_name || "Lainnya",
+    transmission: row.transmission,
+    fuel: row.fuel_type,
+    capacity: row.capacity,
+    pricePerDay: parseFloat(row.price_per_day),
+    image: row.image_url,
+    features: row.features || [],
+    status: row.status,
+  }));
+
   return (
-    <section id="katalog" className="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <section id="katalog" className="bg-white px-4 py-16 sm:px-6 lg:px-8 overflow-hidden">
       <div className="mx-auto max-w-7xl">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-[#223A50] sm:text-3xl">
-            Katalog Mobil Kami
-          </h2>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-slate-500">
-            Pilih kendaraan yang sesuai dengan kebutuhan perjalanan Anda di
-            Kendari dan sekitarnya.
-          </p>
-        </div>
+        <ScrollFadeUp>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-[#223A50] sm:text-3xl">
+              Katalog Mobil Kami
+            </h2>
+            <p className="mx-auto mt-2 max-w-xl text-sm text-slate-500">
+              Pilih kendaraan yang sesuai dengan kebutuhan perjalanan Anda di
+              Kendari dan sekitarnya.
+            </p>
+          </div>
+        </ScrollFadeUp>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <StaggerContainer className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {cars.map((car) => (
-            <CarCard key={car.id} car={car} />
+            <StaggerItem key={car.id}>
+              <CarCard car={car} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );
 }
+

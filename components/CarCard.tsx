@@ -22,6 +22,15 @@ export default function CarCard({ car }: CarCardProps) {
         <span className="absolute left-3 top-3 rounded bg-amber-500 px-2.5 py-0.5 text-xs font-semibold text-[#223A50]">
           {car.type}
         </span>
+        {car.status === "rented" ? (
+          <span className="absolute right-3 top-3 rounded border border-rose-700/40 bg-rose-600 px-2.5 py-0.5 text-xs font-semibold text-white shadow-sm">
+            Sedang Disewa
+          </span>
+        ) : (
+          <span className="absolute right-3 top-3 rounded border border-emerald-700/40 bg-emerald-600 px-2.5 py-0.5 text-xs font-semibold text-white shadow-sm">
+            Tersedia
+          </span>
+        )}
       </div>
 
       {/* Content */}
@@ -64,14 +73,25 @@ export default function CarCard({ car }: CarCardProps) {
             </p>
             <p className="text-xs text-slate-400">per hari</p>
           </div>
-          <a
-            href={generateWhatsAppLink(car.name, car.pricePerDay)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-md bg-[#223A50] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#1a2e40]"
-          >
-            Book Now
-          </a>
+          {car.status === "rented" ? (
+            <a
+              href={generateWhatsAppLink(car.name, car.pricePerDay)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-amber-500"
+            >
+              Tanya Jadwal
+            </a>
+          ) : (
+            <a
+              href={generateWhatsAppLink(car.name, car.pricePerDay)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md bg-[#223A50] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#1a2e40]"
+            >
+              Book Now
+            </a>
+          )}
         </div>
       </div>
     </div>

@@ -1,7 +1,10 @@
 import { MapPin, Phone, Mail, Car } from "lucide-react";
 import { generateGeneralWhatsAppLink } from "@/lib/whatsapp";
+import { getContactSettings } from "@/lib/settings";
 
-export default function Footer() {
+export default async function Footer() {
+  const contact = await getContactSettings();
+
   return (
     <footer id="kontak" className="bg-[#223A50] text-slate-300">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -28,15 +31,15 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
-                Jl. Sultan Hasanuddin No. 12, Kendari, Sulawesi Tenggara 93111
+                {contact.address}
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 shrink-0 text-amber-400" />
-                +62 823-4567-8901
+                {contact.whatsapp_number}
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0 text-amber-400" />
-                info@sewamobilkendari.com
+                {contact.email || "info@sewamobilkendari.com"}
               </li>
             </ul>
           </div>
@@ -64,7 +67,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href={generateGeneralWhatsAppLink()}
+                  href={generateGeneralWhatsAppLink(contact.whatsapp_number)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
