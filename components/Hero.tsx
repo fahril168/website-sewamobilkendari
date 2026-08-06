@@ -23,7 +23,7 @@ export default async function Hero() {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {/* Teks Kiri */}
-          <div className="flex flex-col items-start text-left">
+          <div className="relative z-20 flex flex-col items-start text-left">
             <ScrollFadeUp delay={0.1} yOffset={20}>
               <span className="inline-block rounded-md bg-slate-800/80 border border-slate-700 px-3 py-1 text-xs font-semibold text-amber-400">
                 {hero.tag}
@@ -61,7 +61,7 @@ export default async function Hero() {
                   href={generateGeneralWhatsAppLink(contact.whatsapp_number)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md bg-amber-500 px-6 py-3.5 text-base font-bold text-[#223A50] transition-transform duration-200 hover:scale-105 hover:bg-amber-400 shadow-sm"
+                  className="relative z-30 inline-flex items-center justify-center gap-2 rounded-md bg-amber-500 px-6 py-3.5 text-base font-bold text-[#223A50] transition-transform duration-200 hover:scale-105 hover:bg-amber-400 shadow-sm"
                 >
                   <MessageCircle className="h-5 w-5" />
                   Chat &amp; Booking via WhatsApp
@@ -72,7 +72,7 @@ export default async function Hero() {
 
           {/* Gambar Mobil Kanan dengan Animated Dark Blue Shapes */}
           <ScrollFadeUp delay={0.3} yOffset={40}>
-            <div className="relative">
+            <div className="relative z-10">
               {/* Moving Dark Blue Background Shapes specifically around the image */}
               <HeroImageShapes />
 

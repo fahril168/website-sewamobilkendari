@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function HeroImageShapes() {
   return (
-    <div className="absolute -inset-8 pointer-events-none overflow-visible z-0 select-none">
+    <div className="absolute -inset-4 sm:-inset-8 pointer-events-none overflow-hidden sm:overflow-visible z-0 select-none">
       {/* 1. Large Dark Blue Ambient Glow Blob behind Image */}
       <motion.div
         className="absolute inset-0 rounded-3xl bg-[#111e2b] opacity-90 blur-3xl"
@@ -21,10 +21,10 @@ export default function HeroImageShapes() {
 
       {/* 2. Top-Right Floating Dark Blue Geometric Square */}
       <motion.div
-        className="absolute -top-6 -right-6 h-36 w-36 sm:h-44 sm:w-44 rounded-2xl bg-[#162738]/90 border border-slate-700/50 shadow-2xl backdrop-blur-md"
+        className="absolute top-0 -right-2 sm:-top-6 sm:-right-6 h-28 w-28 sm:h-44 sm:w-44 rounded-2xl bg-[#162738]/90 border border-slate-700/50 shadow-2xl backdrop-blur-md"
         animate={{
-          y: [0, -18, 10, 0],
-          x: [0, 10, -8, 0],
+          y: [0, -12, 8, 0],
+          x: [0, 8, -6, 0],
           rotate: [8, 22, 8],
         }}
         transition={{
@@ -36,7 +36,7 @@ export default function HeroImageShapes() {
 
       {/* 3. Bottom-Left Floating Dark Blue Ring */}
       <motion.div
-        className="absolute -bottom-8 -left-8 h-40 w-40 sm:h-48 sm:w-48 rounded-full border-4 border-[#243d56]/70 bg-[#0e1a26]/80 backdrop-blur-sm shadow-xl"
+        className="absolute -bottom-6 -left-4 sm:-bottom-8 sm:-left-8 h-32 w-32 sm:h-48 sm:w-48 rounded-full border-4 border-[#243d56]/70 bg-[#0e1a26]/80 backdrop-blur-sm shadow-xl"
         animate={{
           y: [0, 18, -12, 0],
           x: [0, -12, 10, 0],
@@ -51,10 +51,10 @@ export default function HeroImageShapes() {
 
       {/* 4. Top-Left Small Dark Blue Floating Pill */}
       <motion.div
-        className="absolute -top-8 left-12 h-14 w-28 rounded-full bg-[#182b3d]/80 border border-amber-500/20 backdrop-blur-xs"
+        className="absolute top-2 left-4 sm:-top-8 sm:left-12 h-10 w-20 sm:h-14 sm:w-28 rounded-full bg-[#182b3d]/80 border border-amber-500/20 backdrop-blur-xs"
         animate={{
-          x: [0, -20, 15, 0],
-          y: [0, -10, 12, 0],
+          x: [0, -15, 10, 0],
+          y: [0, -8, 8, 0],
           rotate: [-12, 5, -12],
         }}
         transition={{
