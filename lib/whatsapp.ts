@@ -37,3 +37,15 @@ export function generateGeneralWhatsAppLink(phone?: string): string {
   const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${targetNumber}?text=${encodedMessage}`;
 }
+
+export function generateDestinationWhatsAppLink(
+  destinationName: string,
+  recommendedCar?: string,
+  phone?: string
+): string {
+  const targetNumber = sanitizePhoneNumber(phone);
+  const carText = recommendedCar ? ` dengan rekomendasi mobil ${recommendedCar}` : "";
+  const message = `Halo SewaMobilKendari.com, saya ingin konsultasi sewa mobil untuk wisata ke ${destinationName}${carText}. Mohon informasi dan penawaran terbaiknya.`;
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/${targetNumber}?text=${encodedMessage}`;
+}

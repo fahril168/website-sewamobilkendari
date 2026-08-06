@@ -18,7 +18,7 @@ export default async function Hero() {
   return (
     <section
       id="beranda"
-      className="relative bg-[#223A50] text-white px-4 py-12 sm:px-6 lg:px-8 lg:py-20 border-b border-slate-700 overflow-hidden"
+      className="relative bg-gradient-to-b from-[#1c3044] via-[#223A50] to-[#1a2d3e] text-white px-4 py-12 sm:px-6 lg:px-8 lg:py-20 border-b border-slate-700 overflow-hidden"
     >
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
