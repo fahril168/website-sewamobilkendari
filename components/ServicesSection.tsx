@@ -50,21 +50,21 @@ export default function ServicesSection() {
           </div>
         </ScrollFadeUp>
 
-        <StaggerContainer className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerContainer className="mt-8 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
           {services.map((item) => (
             <StaggerItem key={item.title}>
-              <div className="group flex flex-col justify-between h-full rounded-xl border border-slate-200 bg-white p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md">
+              <div className="group flex flex-col justify-between h-full rounded-xl border border-slate-200/80 bg-white p-3.5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-md">
                 <div>
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[#F8FAFC] text-[#223A50] transition-colors group-hover:bg-amber-50 group-hover:text-amber-600">
-                    <item.icon className="h-6 w-6" />
+                  <div className="flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-lg bg-[#F8FAFC] text-[#223A50] transition-colors group-hover:bg-amber-50 group-hover:text-amber-600">
+                    <item.icon className="h-5 w-5 sm:h-6 sm:w-6" />
                   </div>
-                  <h3 className="mt-5 text-lg font-bold text-[#223A50]">
+                  <h3 className="mt-3 sm:mt-5 text-sm sm:text-lg font-bold leading-snug text-[#223A50]">
                     {item.title}
                   </h3>
-                  <p className="text-xs font-medium text-amber-600 mb-3">
+                  <p className="text-[11px] sm:text-xs font-medium text-amber-600 mb-0 sm:mb-3">
                     {item.subtitle}
                   </p>
-                  <p className="text-sm leading-relaxed text-slate-500">
+                  <p className="hidden sm:block text-xs sm:text-sm leading-relaxed text-slate-500">
                     {item.description}
                   </p>
                 </div>
